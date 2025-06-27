@@ -31,7 +31,7 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build -t orlevi/dev-containers:python${{ matrix.python-version }} \
+          docker buildx build -t orlevi/dev-containers:python${{ matrix.python-version }} \
             --build-arg PYENV_VER=v2.6.3 \
             --build-arg INSTALL_PYTHON_VERSION=${{ matrix.python-version }} \
             --build-arg POETRY_VERSION=2.1.3 \
