@@ -28,12 +28,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+        
       - name: Build and push
-        run: |
-          docker build -t orlevi/dev-containers:python${{ matrix.python-version }} \
-            --build-arg PYENV_VER=v2.6.3 \
-            --build-arg INSTALL_PYTHON_VERSION=${{ matrix.python-version }} \
-            --build-arg POETRY_VERSION=2.1.3 \
-            --platform linux/amd64,linux/arm64 \
-            --push .
+        uses: docker/build-push-action@v6
+        with:
+          context: "."
+          build-args: |
+            PYENV_VER=v2.6.3
+            INSTALL_PYTHON_VERSION=${{ matrix.python-version }}
+            POETRY_VERSION=2.1.3
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: "orlevi/dev-containers:python${{ matrix.python-version }}"
