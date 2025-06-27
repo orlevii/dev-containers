@@ -10,7 +10,7 @@ ENV PYENV_ROOT "/root/.pyenv"
 ENV PATH "$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
 
 # PYENV_VERSION variable is used by pyenv, so we don't want to set it.
-ARG PYENV_VER="v2.6.3"
+ARG PYENV_VER
 
 # Install pyenv
 RUN git clone --depth 1 --branch "$PYENV_VER" https://github.com/pyenv/pyenv.git ~/.pyenv && \
