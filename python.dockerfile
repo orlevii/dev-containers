@@ -22,6 +22,7 @@ RUN pyenv install "$INSTALL_PYTHON_VERSION"
 RUN pyenv global "$INSTALL_PYTHON_VERSION"
 
 # Install pipx
+ENV PATH "/root/.local/bin:$PATH"
 RUN pip install pipx
 
 # Install poetry
@@ -29,6 +30,3 @@ ARG POETRY_VERSION
 RUN pipx install poetry=="${POETRY_VERSION}" poethepoet
 
 WORKDIR /
-
-SHELL ["/bin/zsh", "-ec"]
-ENTRYPOINT [ "/bin/zsh" ]
